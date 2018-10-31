@@ -49,6 +49,6 @@ public class BaseTest extends AbstractTestNGCucumberTests {
 
     @AfterSuite
     public void tearDown() {
-//        driver.close();
+        driver.close();
     }
 }

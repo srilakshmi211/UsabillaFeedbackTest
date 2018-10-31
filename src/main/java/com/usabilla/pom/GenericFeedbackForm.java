@@ -13,10 +13,10 @@ public class GenericFeedbackForm extends BasePage {
     public static final String EMAIL_HEADER_MSG = "Email (might be used once for follow up)";
     public static final String RATING_HEADER_MSG = "How likely are you to recommend Usabilla to your friends and colleagues?";
 
-    @FindBy(xpath = "/html/body/div[10]/div")
+    @FindBy(css = ".usabilla_scroller_area > div:nth-child(1)")
     public static WebElement GENERIC_FEEDBACK_FORM;
 
-    @FindBy(xpath = "/html/body/div[10]/div/iframe")
+    @FindBy(css = ".usabilla_scroller_area > div:nth-child(1) > iframe:nth-child(1)")
     public static WebElement GENERIC_FEEDBACK_FORM_IFRAME;
 
     @FindBy(id = "star-input")

@@ -6,10 +6,10 @@ import org.openqa.selenium.support.FindBy;
 
 public class MainFeedbackForm extends BasePage{
 
-    @FindBy(xpath = "/html/body/div[10]")
+    @FindBy(css = ".usabilla_scroller_area")
     public static WebElement FEEDBACK_FORM;
 
-    @FindBy(xpath = "/html/body/div[10]/iframe")
+    @FindBy(css = ".usabilla_scroller_area > iframe:nth-child(1)")
     public static WebElement FEEDBACK_FORM_IFRAME;
 
     @FindBy(xpath = "//*[@id=\"contents\"]/div[2]")

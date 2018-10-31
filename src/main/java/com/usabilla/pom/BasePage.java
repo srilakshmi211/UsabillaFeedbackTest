@@ -36,6 +36,7 @@ public class BasePage {
             case "generic feedback form":
                 return Helper.isDisplayed(GenericFeedbackForm.GENERIC_FEEDBACK_FORM);
             case "feedback success screen":
+                Helper.getDriver().switchTo().defaultContent();
                 return Helper.isDisplayed(FeedbackSuccessScreen.FEEDBACK_SUCCESS_SCREEN);
         }
         return false;
@@ -55,6 +56,9 @@ public class BasePage {
                 break;
             case "generic feedback form":
                 page = GenericFeedbackForm.class;
+                break;
+            case "feedback success screen":
+                page = FeedbackSuccessScreen.class;
                 break;
         }
         return page;

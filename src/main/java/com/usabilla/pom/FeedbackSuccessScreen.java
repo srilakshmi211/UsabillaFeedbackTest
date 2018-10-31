@@ -10,10 +10,10 @@ public class FeedbackSuccessScreen extends BasePage{
     public static final String REQUEST_CALL_MSG = "Want to see what Usabilla can do for you? Request a call.";
     public static final String REQUEST_CALL_MSG_LINK = "Request a call";
 
-    @FindBy(xpath = "/html/body/div[10]/div")
+    @FindBy(css = ".usabilla_scroller_area > div:nth-child(1)")
     public static WebElement FEEDBACK_SUCCESS_SCREEN;
 
-    @FindBy(xpath = "/html/body/div[10]/div/iframe")
+    @FindBy(css = ".usabilla_scroller_area > div:nth-child(1) > iframe:nth-child(1)")
     public static WebElement FEEDBACK_SUCCESS_SCREEN_IFRAME;
 
     @FindBy(id = "logo")
