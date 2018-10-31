@@ -4,7 +4,7 @@ import com.usabilla.utilities.Helper;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class MainFeedbackForm extends BasePage{
+public class MainFeedbackForm extends BasePage {
 
     @FindBy(css = ".usabilla_scroller_area")
     public static WebElement FEEDBACK_FORM;
@@ -33,13 +33,13 @@ public class MainFeedbackForm extends BasePage{
     @FindBy(className = "powered-by")
     public static WebElement POWERED_BY_USABILLA_LINK;
 
-    public static void switchToFeedbackForm(){
+    public static void switchToFeedbackForm() {
         Helper.getDriver().switchTo().frame(FEEDBACK_FORM_IFRAME);
     }
 
-    public static WebElement getItem(String option){
+    public static WebElement getItem(String option) {
         WebElement element = null;
-        switch (option){
+        switch (option) {
             case "feedback form":
                 element = FEEDBACK_FORM;
                 break;
@@ -59,9 +59,9 @@ public class MainFeedbackForm extends BasePage{
         return element;
     }
 
-    public static WebElement getText(String option){
+    public static WebElement getText(String option) {
         WebElement element = null;
-        switch (option){
+        switch (option) {
             case "specific feedback option":
                 element = SPECIFIC_FEEDBACK_MESSAGE;
                 break;

@@ -79,7 +79,6 @@ Feature: Feedback feature
     Then text How likely are you to recommend Usabilla to your friends and colleagues? should be displayed on generic feedback form
     And rating field is displayed on generic feedback form
 
-
   @implemented @smoke @genericFeedback
   Scenario: To check end to end flow of Generic feedback with suggestion option
     Given I am on the home page

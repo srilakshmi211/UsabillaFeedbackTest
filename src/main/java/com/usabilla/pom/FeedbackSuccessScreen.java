@@ -4,7 +4,7 @@ import com.usabilla.utilities.Helper;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class FeedbackSuccessScreen extends BasePage{
+public class FeedbackSuccessScreen extends BasePage {
 
     public static final String THANKS_MSG = "Thanks for leaving feedback!";
     public static final String REQUEST_CALL_MSG = "Want to see what Usabilla can do for you? Request a call.";
@@ -39,7 +39,7 @@ public class FeedbackSuccessScreen extends BasePage{
     }
 
     public static WebElement getItem(String option) {
-        if(option.equals(REQUEST_CALL_MSG_LINK)){
+        if (option.equals(REQUEST_CALL_MSG_LINK)) {
             option = REQUEST_CALL_MSG_LINK;
         }
         WebElement element = null;
@@ -55,9 +55,9 @@ public class FeedbackSuccessScreen extends BasePage{
     }
 
     public static WebElement getText(String option) {
-        if(option.equals(THANKS_MSG)){
+        if (option.equals(THANKS_MSG)) {
             option = THANKS_MSG;
-        }else if(option.equals(REQUEST_CALL_MSG)){
+        } else if (option.equals(REQUEST_CALL_MSG)) {
             option = REQUEST_CALL_MSG;
         }
         WebElement element = null;

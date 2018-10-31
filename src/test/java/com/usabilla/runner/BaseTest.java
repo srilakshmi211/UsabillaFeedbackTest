@@ -8,12 +8,9 @@ import com.usabilla.utilities.Helper;
 import cucumber.api.CucumberOptions;
 import cucumber.api.testng.AbstractTestNGCucumberTests;
 import org.openqa.selenium.WebDriver;
-import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
-
-import java.io.IOException;
 
 @CucumberOptions(
         features = {"src/test/features/"},
@@ -40,11 +37,8 @@ public class BaseTest extends AbstractTestNGCucumberTests {
     }
 
     @AfterMethod
-    public void afterMethod(ITestResult testResult) throws IOException {
-        if (testResult.getStatus() == ITestResult.FAILURE) {
-            Helper.snapScreenShot("FAIL", testResult.getName(), driver);
-        }
-        Helper.getDriver().navigate().refresh();
+    public void afterMethod() {
+        driver.navigate().refresh();
     }
 
     @AfterSuite

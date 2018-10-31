@@ -5,17 +5,27 @@ import com.usabilla.pom.FeedbackSuccessScreen;
 import com.usabilla.pom.GenericFeedbackForm;
 import com.usabilla.pom.MainFeedbackForm;
 import com.usabilla.utilities.Helper;
+import cucumber.api.Scenario;
+import cucumber.api.java.After;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import org.openqa.selenium.WebElement;
 
+import java.io.IOException;
 import java.lang.reflect.Method;
 
 import static org.testng.AssertJUnit.assertTrue;
 
 
 public class FeedbackSteps {
+
+    @After
+    public void afterScenario(Scenario testResult) throws IOException {
+        if (testResult.isFailed()) {
+            Helper.snapScreenShot("FAIL", testResult.getName(), Helper.getDriver());
+        }
+    }
 
     @Given("^I am on the (.*)$")
     public void verifyPage(String name) {
@@ -24,8 +34,7 @@ public class FeedbackSteps {
             MainFeedbackForm.switchToFeedbackForm();
         } else if (name.equals("generic feedback form")) {
             GenericFeedbackForm.switchToGenericFeedbackForm();
-        }
-        else if (name.equals("feedback success screen")) {
+        } else if (name.equals("feedback success screen")) {
             FeedbackSuccessScreen.switchToFeedbackSuccessScreen();
         }
     }
@@ -66,11 +75,11 @@ public class FeedbackSteps {
     public void verifyLinkText(String text, String pageName) {
         Class page = BasePage.getPageName(pageName);
         WebElement element = null;
-        if(page == MainFeedbackForm.class) {
+        if (page == MainFeedbackForm.class) {
             element = MainFeedbackForm.getText(text);
-        } else if(page == GenericFeedbackForm.class){
+        } else if (page == GenericFeedbackForm.class) {
             element = GenericFeedbackForm.getText(text);
-        } else if(page == FeedbackSuccessScreen.class){
+        } else if (page == FeedbackSuccessScreen.class) {
             element = FeedbackSuccessScreen.getText(text);
         }
         assertTrue(Helper.isDisplayed(element));

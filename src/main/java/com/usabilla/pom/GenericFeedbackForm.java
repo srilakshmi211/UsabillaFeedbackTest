@@ -141,13 +141,13 @@ public class GenericFeedbackForm extends BasePage {
     }
 
     public static WebElement getText(String option) {
-        if(option.equals(SHARE_TEXT_HEADER_MSG)){
+        if (option.equals(SHARE_TEXT_HEADER_MSG)) {
             option = SHARE_TEXT_HEADER_MSG;
-        }else if(option.equals(SUBJECT_HEADER_MSG)){
+        } else if (option.equals(SUBJECT_HEADER_MSG)) {
             option = SUBJECT_HEADER_MSG;
-        }else if(option.equals(EMAIL_HEADER_MSG)){
+        } else if (option.equals(EMAIL_HEADER_MSG)) {
             option = EMAIL_HEADER_MSG;
-        }else if(option.equals(RATING_HEADER_MSG)){
+        } else if (option.equals(RATING_HEADER_MSG)) {
             option = RATING_HEADER_MSG;
         }
         WebElement element = null;

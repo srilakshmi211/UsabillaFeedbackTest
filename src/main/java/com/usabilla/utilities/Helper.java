@@ -22,7 +22,7 @@ public class Helper {
     private static WebDriver driver;
 
 
-    public static void initialiseDriver(){
+    public static void initialiseDriver() {
         System.setProperty("webdriver.chrome.driver", System.getProperties().get("user.dir") + "/chromedriver");
 
         if (System.getProperty("browserType").equals("headless")) {
@@ -84,7 +84,7 @@ public class Helper {
         }
     }
 
-    public static void click(WebElement element){
+    public static void click(WebElement element) {
         waitTillElementVisible(element);
         element.click();
     }
@@ -92,7 +92,7 @@ public class Helper {
     public static boolean validateText(WebElement element, String text) {
         try {
             waitTillElementVisible(element);
-            if(element.getText().contains(text)){
+            if (element.getText().contains(text)) {
                 return true;
             }
         } catch (NoSuchElementException e) {
