@@ -1,5 +1,9 @@
 package com.usabilla.utilities;
 
+import com.usabilla.pom.BasePage;
+import com.usabilla.pom.FeedbackSuccessScreen;
+import com.usabilla.pom.GenericFeedbackForm;
+import com.usabilla.pom.MainFeedbackForm;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -11,10 +15,10 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Method;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Random;
 
 public class Helper {
 
@@ -41,11 +45,6 @@ public class Helper {
     public static String generateString(int length) {
         String generatedString = RandomStringUtils.randomAlphanumeric(length);
         return generatedString;
-    }
-
-    public static String setRandomCity() {
-        String[] cities = {"Amsterdam", "Amstelveen", "Den Haag", "Rotterdam", "Haarlem", "Utrecht", "Eindhoven"};
-        return cities[new Random().nextInt(cities.length)];
     }
 
     public static void snapScreenShot(String result, String name, WebDriver driver) throws IOException {
@@ -112,6 +111,31 @@ public class Helper {
     public static void enterText(WebElement element, String text) {
         waitTillElementVisible(element);
         element.sendKeys(text);
+    }
+
+    public static WebElement getElement(String pageName, String method, String name) throws Exception {
+        Class page = BasePage.getPageName(pageName);
+        Method methodName = page.getMethod(method, String.class);
+        Object pageInstance = page.newInstance();
+        WebElement element = (WebElement) methodName.invoke(pageInstance, name);
+        return element;
+    }
+
+    public static WebElement getElementForText(String pageName, String text) {
+        Class page = BasePage.getPageName(pageName);
+        WebElement element = null;
+        if (page == MainFeedbackForm.class) {
+            element = MainFeedbackForm.getText(text);
+        } else if (page == GenericFeedbackForm.class) {
+            element = GenericFeedbackForm.getText(text);
+        } else if (page == FeedbackSuccessScreen.class) {
+            element = FeedbackSuccessScreen.getText(text);
+        }
+        return element;
+    }
+
+    public static String getText(WebElement element) {
+        return element.getText();
     }
 }
 

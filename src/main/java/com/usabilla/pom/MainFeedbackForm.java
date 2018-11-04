@@ -6,6 +6,9 @@ import org.openqa.selenium.support.FindBy;
 
 public class MainFeedbackForm extends BasePage {
 
+    private static final String SPECIFIC_FEEDBACK_MSG = "I’d like to give feedback on a specific part of this page.";
+    private static final String GENERIC_FEEDBACK_MSG = "I’d like to give general feedback on the entire website.";
+
     @FindBy(css = ".usabilla_scroller_area")
     public static WebElement FEEDBACK_FORM;
 
@@ -60,12 +63,17 @@ public class MainFeedbackForm extends BasePage {
     }
 
     public static WebElement getText(String option) {
+        if (option.equals(SPECIFIC_FEEDBACK_MSG)) {
+            option = SPECIFIC_FEEDBACK_MSG;
+        } else if (option.equals(GENERIC_FEEDBACK_MSG)) {
+            option = GENERIC_FEEDBACK_MSG;
+        }
         WebElement element = null;
         switch (option) {
-            case "specific feedback option":
+            case SPECIFIC_FEEDBACK_MSG:
                 element = SPECIFIC_FEEDBACK_MESSAGE;
                 break;
-            case "generic feedback option":
+            case GENERIC_FEEDBACK_MSG:
                 element = GENERIC_FEEDBACK_MESSAGE;
                 break;
             case "Powered by Usabilla":

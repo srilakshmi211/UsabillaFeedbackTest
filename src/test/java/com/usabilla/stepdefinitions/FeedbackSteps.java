@@ -13,7 +13,6 @@ import cucumber.api.java.en.Then;
 import org.openqa.selenium.WebElement;
 
 import java.io.IOException;
-import java.lang.reflect.Method;
 
 import static org.testng.AssertJUnit.assertTrue;
 
@@ -41,58 +40,30 @@ public class FeedbackSteps {
 
     @Then("^(.*) is displayed on (.*)$")
     public void verifyOption(String option, String pageName) throws Exception {
-        Class page = BasePage.getPageName(pageName);
-        Method methodName = page.getMethod("getItem", String.class);
-        Object pageInstance = page.newInstance();
-        WebElement element = (WebElement) methodName.invoke(pageInstance, option);
-        assertTrue(Helper.isDisplayed(element));
+        assertTrue(Helper.isDisplayed(Helper.getElement(pageName, "getItem", option)));
     }
 
     @And("^text (.*) should be displayed on (.*)$")
     public void verifyText(String text, String pageName) {
-        Class page = BasePage.getPageName(pageName);
-        WebElement element = null;
-        if (page == MainFeedbackForm.class) {
-            element = MainFeedbackForm.getText(pageName);
-        } else if (page == GenericFeedbackForm.class) {
-            element = GenericFeedbackForm.getText(text);
-        } else if (page == FeedbackSuccessScreen.class) {
-            element = FeedbackSuccessScreen.getText(text);
-        }
-        assertTrue("Expected: " + text + " Actual: " + element.getText(), Helper.validateText(element, text));
+        WebElement element = Helper.getElementForText(pageName, text);
+        assertTrue("Expected: " + text + " Actual: " + Helper.getText(element), Helper.validateText(element, text));
     }
 
     @Then("^I click on (.*) on (.*)$")
     public void clickOnElement(String buttonName, String pageName) throws Exception {
-        Class page = BasePage.getPageName(pageName);
-        Method methodName = page.getMethod("getItem", String.class);
-        Object pageInstance = page.newInstance();
-        WebElement element = (WebElement) methodName.invoke(pageInstance, buttonName);
-        Helper.click(element);
+        Helper.click(Helper.getElement(pageName, "getItem", buttonName));
     }
 
     @Then("^(.*) link is visible on (.*)$")
     public void verifyLinkText(String text, String pageName) {
-        Class page = BasePage.getPageName(pageName);
-        WebElement element = null;
-        if (page == MainFeedbackForm.class) {
-            element = MainFeedbackForm.getText(text);
-        } else if (page == GenericFeedbackForm.class) {
-            element = GenericFeedbackForm.getText(text);
-        } else if (page == FeedbackSuccessScreen.class) {
-            element = FeedbackSuccessScreen.getText(text);
-        }
+        WebElement element = Helper.getElementForText(pageName, text);
         assertTrue(Helper.isDisplayed(element));
-        assertTrue("Expected: " + text + " Actual: " + element.getText(), Helper.validateText(element, text));
+        assertTrue("Expected: " + text + " Actual: " + Helper.getText(element), Helper.validateText(element, text));
     }
 
     @And("^I select option (.*) from (.*) on (.*)$")
     public void selectOptionFromDropdown(String value, String dropdown, String pageName) throws Exception {
-        Class page = BasePage.getPageName(pageName);
-        Method methodName = page.getMethod("getItem", String.class);
-        Object pageInstance = page.newInstance();
-        WebElement element = (WebElement) methodName.invoke(pageInstance, dropdown);
-        Helper.selectDropdownValue(element, value);
+        Helper.selectDropdownValue(Helper.getElement(pageName, "getItem", dropdown), value);
     }
 
     @Then("^I enter (.*) under (.*) on (.*)$")
@@ -102,10 +73,6 @@ public class FeedbackSteps {
         } else if (text.equals("email")) {
             text = "test@test.com";
         }
-        Class page = BasePage.getPageName(pageName);
-        Method methodName = page.getMethod("getItem", String.class);
-        Object pageInstance = page.newInstance();
-        WebElement element = (WebElement) methodName.invoke(pageInstance, fieldName);
-        Helper.enterText(element, text);
+        Helper.enterText(Helper.getElement(pageName, "getItem", fieldName), text);
     }
 }
